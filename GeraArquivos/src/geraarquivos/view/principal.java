@@ -4,6 +4,8 @@
  */
 package geraarquivos.view;
 
+import utilitarios.controller.Conexao;
+
 /**
  *
  * @author tiagokochenborger
@@ -14,7 +16,9 @@ public class principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Conexao conUsu;
+        conUsu = new Conexao();
+        conUsu.getInstance();
         
         FrmListaObrigacoes frm = new FrmListaObrigacoes();
         

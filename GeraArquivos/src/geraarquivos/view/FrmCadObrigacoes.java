@@ -4,12 +4,18 @@
  */
 package geraarquivos.view;
 
+import geraarquivos.controllers.ctrlCadObrigacao;
+import geraarquivos.model.CadObrigacao;
+
 /**
  *
  * @author tiagokochenborger
  */
 public class FrmCadObrigacoes extends javax.swing.JFrame {
-
+    
+    ctrlCadObrigacao ctrl = new ctrlCadObrigacao();
+    
+    
     /**
      * Creates new form FrmCadObrigacoes
      */
@@ -40,8 +46,6 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
         chbGerarUnificado = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         btProximo = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("geraarquivos/resources/bundle"); // NOI18N
@@ -78,10 +82,6 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText(bundle.getString("FrmCadObrigacoes.jLabel6.text")); // NOI18N
-
-        jTextField1.setText(bundle.getString("FrmCadObrigacoes.jTextField1.text")); // NOI18N
-
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -90,14 +90,9 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel1Layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(tfNome))
-                    .add(jSeparator1)
-                    .add(jPanel1Layout.createSequentialGroup()
                         .add(103, 103, 103)
                         .add(btProximo)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(112, 112, 112))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createSequentialGroup()
@@ -116,13 +111,16 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
                                 .add(jLabel3)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(cbOrgaoRegulador, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(chbGerarUnificado)
+                            .add(chbGerarUnificado))
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel1Layout.createSequentialGroup()
-                                .add(jLabel6)
-                                .add(1, 1, 1)
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 68, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                        .add(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .add(jLabel1)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(tfNome))
+                            .add(jSeparator1))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -132,10 +130,6 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
                     .add(tfNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel6)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(cbPeriodicidade, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -181,10 +175,20 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProximoActionPerformed
+        
+        CadObrigacao cad = new CadObrigacao();
+        
+        cad.setDiaEntrega(tfDiaEntrega.getText());
+        cad.setDiaProgramaGeracao(tfDiaGeracao.getText());
+        cad.setNomeObrigacao(tfNome.getText());
+        cad.setOrgaoRegulador(cbOrgaoRegulador.getSelectedItem().toString());
+        cad.setPeriodicidade(cbPeriodicidade.getSelectedItem().toString());
+        cad.setSaidaUnica(chbGerarUnificado.isSelected());
+        
         dispose();
         
-        FrmCadBloco frm = new FrmCadBloco();
-        
+        FrmCadLayout frm = new FrmCadLayout();
+        frm.setIdCadObrigacao(ctrl.insertCadObrigacao(cad));
         frm.setLocationRelativeTo(null);
         frm.setVisible(true);
     }//GEN-LAST:event_btProximoActionPerformed
@@ -233,12 +237,12 @@ public class FrmCadObrigacoes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField tfDiaEntrega;
     private javax.swing.JTextField tfDiaGeracao;
     private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
+
+    
 }

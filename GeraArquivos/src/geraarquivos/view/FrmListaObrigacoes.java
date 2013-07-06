@@ -93,12 +93,20 @@ public class FrmListaObrigacoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddActionPerformed
-        dispose();
+        /*dispose();
 
         FrmListaSugestoesLayouts frm = new FrmListaSugestoesLayouts();
 
         frm.setLocationRelativeTo(null);
+        frm.setVisible(true);*/
+        
+        dispose();
+
+        FrmCadObrigacoes frm = new FrmCadObrigacoes();
+        
+        frm.setLocationRelativeTo(null);
         frm.setVisible(true);
+        
     }//GEN-LAST:event_btAddActionPerformed
 
     /**

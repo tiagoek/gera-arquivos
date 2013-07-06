@@ -4,17 +4,27 @@
  */
 package geraarquivos.view;
 
+import geraarquivos.controllers.ctrlCadLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import utilitarios.controller.Conexao;
+
 /**
  *
  * @author tiagokochenborger
  */
 public class FrmListaSugestoesLayouts extends javax.swing.JFrame {
-
+    
+    Conexao con= Conexao.getInstance();
+    ctrlCadLayout cad = new ctrlCadLayout();
     /**
      * Creates new form FrmListaSugestõesLayouts
      */
     public FrmListaSugestoesLayouts() {
         initComponents();
+        listaObrigacoes();
     }
 
     /**
@@ -107,7 +117,34 @@ public class FrmListaSugestoesLayouts extends javax.swing.JFrame {
         frm.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
+    
+    private void listaObrigacoes()
+    {
+        try {
+            final DefaultTableModel modelo = new DefaultTableModel();
+            
+            modelo.addColumn("Nome");
+            
+            cad.listaCadLayout();
+            
+            while(con.resultSet.next()){ 
+            String nome = con.resultSet.getString("nomeLayout");
+            modelo.addRow(new Object[]{nome, //new Boolean(true)
+            });
+            
+            
+            
+            jTable1.setModel(modelo);
+            
+            repaint();
+            
+          }
+        } catch (SQLException ex) {
+            Logger.getLogger(FrmListaSugestoesLayouts.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
