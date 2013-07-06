@@ -32,8 +32,9 @@ public class ctrlCadLayout {
         try {
             Connection con2 = con.getConecta();
 
-            String sql=" insert into cadLayout (nomeLayout,modeloArquitetura,separador,extensaoArquivo,saidaArquivo,quebraLinha) values"
+            String sql=" insert into cadLayout (nomeLayout,modeloArquitetura,separador,extensaoArquivo,saidaArquivo,quebraLinha,fkIdCadObrigacoes) values"
                     + "("
+                    + " ?,"
                     + " ?,"
                     + " ?,"
                     + " ?,"
@@ -50,6 +51,7 @@ public class ctrlCadLayout {
             pstm.setString(4,lay.getExtensaoArquivo());
             pstm.setString(5,lay.getSaidaArquivo());
             pstm.setString(6,lay.getQuebraLinha());
+            pstm.setInt(7,lay.getFkIdCadObrigacoes());
             
 
             pstm.execute(); 

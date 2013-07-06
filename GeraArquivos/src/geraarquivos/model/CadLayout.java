@@ -17,7 +17,10 @@ public class CadLayout {
     private String extensaoArquivo;
     private String saidaArquivo;
     private String quebraLinha;
-
+    //
+    private int fkIdCadObrigacoes;
+    
+    
     /**
      * @return the idCadLayout
      */
@@ -114,6 +117,20 @@ public class CadLayout {
      */
     public void setSeparador(String separador) {
         this.separador = separador;
+    }
+
+    /**
+     * @return the fkIdCadObrigacoes
+     */
+    public int getFkIdCadObrigacoes() {
+        return fkIdCadObrigacoes;
+    }
+
+    /**
+     * @param fkIdCadObrigacoes the fkIdCadObrigacoes to set
+     */
+    public void setFkIdCadObrigacoes(int fkIdCadObrigacoes) {
+        this.fkIdCadObrigacoes = fkIdCadObrigacoes;
     }
     
     

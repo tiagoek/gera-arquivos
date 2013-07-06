@@ -106,10 +106,9 @@ public class ctrlCadObrigacao {
             PreparedStatement pstm = con2.prepareStatement(sql);
             
             //JOptionPane.showMessageDialog(null, "Entrou nas notas de entrada");
-             
-
+           
             ResultSet rs = pstm.executeQuery(); 
-
+            rs.next();
             return rs.getInt("id");
         } catch (SQLException ex) {
             Logger.getLogger(ctrlCadObrigacao.class.getName()).log(Level.SEVERE, null, ex);
